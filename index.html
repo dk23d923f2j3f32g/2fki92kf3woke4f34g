@@ -4,15 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Display</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        h2 {
+            animation: glow 25ms linear infinite 20ms;
+        }
+        
+        @keyframes glow {
+            100% {
+                text-shadow: 0 0 30px #fff;
+            }
+        }
+
+        .container {
+            font-family: "Roboto", serif;
+            color: rgb(255, 113, 219);
+            border-bottom: solid 10px rgb(255, 113, 219);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 30px;
+            background-color: rgb(62, 65, 89);
+            padding: 50px;
+            position: absolute;
+            text-align: center;
+        }
+        .code {
+            background-color: rgb(255, 113, 219);
+            color: white;
+            border-radius: 30px;
+            padding: 20px;
+            display: inline-block;
+        }
+        body {
+            background-color: rgb(17, 19, 23);
+        }
+    </style>
 </head>
 <body>
-    <h1>Twój kod:</h1>
-    <p id="code"></p>
+    <div class="container">
+        <h1>ENTER THIS CODE IN LOADER:</h1>
+        <div class="code">
+            <h2 id="code">Loading...</h2>
+        </div>
+    </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
-        document.getElementById("code").textContent = code ? code : "Brak kodu";
+        document.getElementById("code").textContent = code ? code : "No Code Provided";
     </script>
 </body>
 </html>
