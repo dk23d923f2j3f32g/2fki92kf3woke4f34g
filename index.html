@@ -3,51 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Display</title>
+    <title>/////////////</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
         h2 {
-            animation: glow 25ms linear infinite 20ms;
+            text-shadow: 0 0 30px #686cff;
+            font-weight: 900;
+            color: #686cff;
+            font-size: 20px;
+            margin: 0;
         }
-        
-        @keyframes glow {
-            100% {
-                text-shadow: 0 0 30px #fff;
-            }
+
+        h1 {
+            color: rgb(202, 202, 202);
+            font-weight: 900;
+        }
+
+        h1.first {
+            font-size: 40px;
+            font-family: "Roboto", serif;
+            font-weight: 900;
+            text-shadow: 0 0 30px #686cff;
+            color: #686cff;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            text-align: center;
         }
 
         .container {
             font-family: "Roboto", serif;
-            color: rgb(255, 113, 219);
-            border-bottom: solid 10px rgb(255, 113, 219);
+            border: solid 2px #333333;
+            box-shadow: 0 0 200px #979bff33;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 30px;
-            background-color: rgb(62, 65, 89);
-            padding: 50px;
-            position: absolute;
+            background-color: rgb(19, 19, 19);
+            width: 600px;
+            height: 150px;
+            padding: 30px;
             text-align: center;
         }
-        .code {
-            background-color: rgb(255, 113, 219);
-            color: white;
-            border-radius: 30px;
-            padding: 20px;
-            display: inline-block;
+
+        .code-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* Odstęp między kodem a przyciskiem */
+            margin-top: 15px;
         }
+
+        .code {
+            border-bottom: #686cff solid 2px;
+           
+            border: solid 2px #1a1a1a;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #111111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+        }
+
+        .copy-btn {
+            border: none;
+            box-shadow: 0 0 10px #686cff;
+            background-color: #686cff;
+            color: #ffffff;
+            font-weight: 900;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #575cff;
+            box-shadow: 0 0 20px #686cff;
+        }
+
         body {
-            background-color: rgb(17, 19, 23);
+            background-image: url(bg.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
         }
     </style>
 </head>
 <body>
+
+    <h1 class="first">BEBETTER AUTH</h1>
     <div class="container">
-        <h1>ENTER THIS CODE IN LOADER:</h1>
-        <div class="code">
-            <h2 id="code">Loading...</h2>
+        <h1>CODE TO LOGIN:</h1>
+        <div class="code-box">
+            <div class="code">
+                <h2 id="code">Loading...</h2>
+            </div>
+            <button class="copy-btn" onclick="copyCode()">COPY</button>
         </div>
     </div>
 
@@ -55,6 +112,17 @@
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
         document.getElementById("code").textContent = code ? code : "No Code Provided";
+
+        function copyCode() {
+            const codeText = document.getElementById("code").textContent;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const button = document.querySelector(".copy-btn");
+                button.textContent = "COPIED!";
+                setTimeout(() => {
+                    button.textContent = "COPY";
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
